@@ -1,14 +1,14 @@
-const Dragon = require('./dragon.js');
+const Generation = require('./generation');
 
-const phil = new Dragon({ birthdate: new Date(), nickname: 'Phil' });
-const baloney = new Dragon({ birthdate: new Date(), nickname: 'baloney' });
-const gooby = new Dragon();
+const generation = new Generation();
 
-const loosy = new Dragon({
-  traits: [{ traitType: 'backgroundColor', traitValue: 'green' }]
-});
-console.log('loosy', loosy);
+console.log('generation', generation);
 
-console.log('phil', phil);
-console.log('baloney', baloney);
-console.log('gooby', gooby);
+const goober = generation.newDragon();
+
+console.log('goober', goober);
+
+setTimeout(() => {
+  const mumuu = generation.newDragon();
+  console.log('mumuu', mumuu);
+}, 15000);
