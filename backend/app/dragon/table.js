@@ -1,14 +1,16 @@
 const pool = require('../../databasePool');
 class DragonTable {
   static storeDragon(dragon) {
+    const { birthdate, nickname, generationId } = dragon;
     return new Promise((resolve, reject) => {
       pool.query(
-        `INSERT INTO dragon(birthdate, nickname, "generationId") VALUES($1, $2, $3) RETURNING id`,
-        [dragon.birthdate, dragon.nickname, dragon.generationId],
+        `INSERT INTO dragon(birthdate, nickname, "generationId")
+        VALUES($1, $2, $3) RETURNING id`,
+        [birthdate, nickname, generationId],
         (err, res) => {
           if (err) return reject(err);
-          const { id } = res.rows[0];
-          resolve({ dragonId: id });
+          const dragonId = res.rows[0].id;
+          resolve({ dragonId });
         }
       );
     });

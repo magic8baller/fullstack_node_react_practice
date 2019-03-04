@@ -1,8 +1,8 @@
 const TRAITS = require('../../data/traits.json');
 const DEFAULT_PROPERTIES = {
-  dragonId: '',
+  dragonId: null,
   nickname: 'unnamed',
-  generationId: '',
+  generationId: null,
   get birthdate() {
     return new Date();
   },
