@@ -3,7 +3,7 @@ const TRAITS = require('../data/traits.json');
 
 TRAITS.forEach(TRAIT => {
   const traitType = TRAIT.type;
-  const traitValues = TRAIT.traitValues;
+  const traitValues = TRAIT.values;
   traitValues.forEach(traitValue => {
     pool.query(
       `INSERT INTO trait("traitType", "traitValue")
