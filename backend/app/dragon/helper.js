@@ -1,5 +1,6 @@
 const pool = require('../../databasePool');
 const DragonTable = require('./table');
+const Dragon = require('./index');
 const getDragonWithTraits = ({ dragonId }) => {
   //wrap promises around each query
   return Promise.all([
@@ -33,4 +34,7 @@ const getDragonWithTraits = ({ dragonId }) => {
     })
     .catch(err => console.error(err));
 };
+getDragonWithTraits({ dragonId: 1 })
+  .then(dragon => console.log('dragon', dragon))
+  .catch(err => console.error('error', err));
 module.exports = { getDragonWithTraits };

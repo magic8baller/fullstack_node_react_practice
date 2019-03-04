@@ -8,8 +8,8 @@ class GenerationTable {
         [generation.expiration],
         (err, res) => {
           if (err) return reject(err);
-          const { id } = res.rows[0]; //res.rows[0].id
-          resolve({ generationId: id });
+          const generationId = res.rows[0].id; //res.rows[0].id
+          resolve({ generationId });
         }
       );
     });
