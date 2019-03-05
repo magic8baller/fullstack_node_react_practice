@@ -32277,7 +32277,475 @@ if (!module.hot || "development" === 'production' || !hasWindow) {
     module.exports = window.reactHotLoaderGlobal = require('./dist/react-hot-loader.development.js');
   }
 }
-},{"./dist/react-hot-loader.production.min.js":"../node_modules/react-hot-loader/dist/react-hot-loader.production.min.js","./dist/react-hot-loader.development.js":"../node_modules/react-hot-loader/dist/react-hot-loader.development.js"}],"components/DragonAvatar.js":[function(require,module,exports) {
+},{"./dist/react-hot-loader.production.min.js":"../node_modules/react-hot-loader/dist/react-hot-loader.production.min.js","./dist/react-hot-loader.development.js":"../node_modules/react-hot-loader/dist/react-hot-loader.development.js"}],"../node_modules/@babel/runtime/helpers/interopRequireDefault.js":[function(require,module,exports) {
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+module.exports = _interopRequireDefault;
+},{}],"../node_modules/@babel/runtime/helpers/extends.js":[function(require,module,exports) {
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
+},{}],"../node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js":[function(require,module,exports) {
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutPropertiesLoose;
+},{}],"../node_modules/@babel/runtime/helpers/inheritsLoose.js":[function(require,module,exports) {
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+module.exports = _inheritsLoose;
+},{}],"../node_modules/classnames/index.js":[function(require,module,exports) {
+var define;
+/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg) && arg.length) {
+				var inner = classNames.apply(null, arg);
+				if (inner) {
+					classes.push(inner);
+				}
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// register as 'classnames', consistent with npm package name
+		define('classnames', [], function () {
+			return classNames;
+		});
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+},{}],"../node_modules/react-context-toolbox/forwardRef.js":[function(require,module,exports) {
+"use strict";
+
+exports.__esModule = true;
+exports.default = forwardRef;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function forwardRef(renderFn, _ref) {
+  var displayName = _ref.displayName,
+      propTypes = _ref.propTypes,
+      defaultProps = _ref.defaultProps,
+      _ref$allowFallback = _ref.allowFallback,
+      allowFallback = _ref$allowFallback === void 0 ? false : _ref$allowFallback;
+
+  var render = function render(props, ref) {
+    return renderFn(props, ref);
+  };
+
+  Object.assign(render, {
+    displayName: displayName
+  });
+  if (_react.default.forwardRef || !allowFallback) return Object.assign(_react.default.forwardRef(render), {
+    propTypes: propTypes,
+    defaultProps: defaultProps
+  });
+  return Object.assign(function (props) {
+    return render(props, null);
+  }, {
+    displayName: displayName,
+    propTypes: propTypes,
+    defaultProps: defaultProps
+  });
+}
+},{"react":"../node_modules/react/index.js"}],"../node_modules/react-bootstrap/ThemeProvider.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.createBootstrapComponent = createBootstrapComponent;
+exports.default = exports.ThemeConsumer = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
+
+var _forwardRef = _interopRequireDefault(require("react-context-toolbox/forwardRef"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _React$createContext = _react.default.createContext(new Map()),
+    Provider = _React$createContext.Provider,
+    Consumer = _React$createContext.Consumer;
+
+exports.ThemeConsumer = Consumer;
+
+var ThemeProvider =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inheritsLoose2.default)(ThemeProvider, _React$Component);
+
+  function ThemeProvider() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
+    _this.prefixes = new Map();
+    Object.keys(_this.props.prefixes).forEach(function (key) {
+      _this.prefixes.set(key, _this.props.prefixes[key]);
+    });
+    return _this;
+  }
+
+  var _proto = ThemeProvider.prototype;
+
+  _proto.render = function render() {
+    return _react.default.createElement(Provider, {
+      value: this.prefixes
+    }, this.props.children);
+  };
+
+  return ThemeProvider;
+}(_react.default.Component);
+
+function createBootstrapComponent(Component, opts) {
+  if (typeof opts === 'string') opts = {
+    prefix: opts
+  };
+  var isClassy = Component.prototype && Component.prototype.isReactComponent; // If it's a functional component make sure we don't break it with a ref
+
+  var _opts = opts,
+      prefix = _opts.prefix,
+      _opts$forwardRefAs = _opts.forwardRefAs,
+      forwardRefAs = _opts$forwardRefAs === void 0 ? isClassy ? 'ref' : 'innerRef' : _opts$forwardRefAs;
+  return (0, _forwardRef.default)(function (_ref, ref) {
+    var props = (0, _extends2.default)({}, _ref);
+    props[forwardRefAs] = ref;
+    return _react.default.createElement(Consumer, null, function (prefixes) {
+      return _react.default.createElement(Component, (0, _extends2.default)({}, props, {
+        bsPrefix: props.bsPrefix || prefixes.get(prefix) || prefix
+      }));
+    });
+  }, {
+    displayName: "Bootstrap(" + (Component.displayName || Component.name) + ")"
+  });
+}
+
+var _default = ThemeProvider;
+exports.default = _default;
+},{"@babel/runtime/helpers/interopRequireDefault":"../node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/inheritsLoose":"../node_modules/@babel/runtime/helpers/inheritsLoose.js","react-context-toolbox/forwardRef":"../node_modules/react-context-toolbox/forwardRef.js","react":"../node_modules/react/index.js"}],"../node_modules/@babel/runtime/helpers/assertThisInitialized.js":[function(require,module,exports) {
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+module.exports = _assertThisInitialized;
+},{}],"../node_modules/react-bootstrap/utils/createChainedFunction.js":[function(require,module,exports) {
+"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+/**
+ * Safe chained function
+ *
+ * Will only create a new function if needed,
+ * otherwise will pass back existing functions or null.
+ *
+ * @param {function} functions to chain
+ * @returns {function|null}
+ */
+function createChainedFunction() {
+  for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
+    funcs[_key] = arguments[_key];
+  }
+
+  return funcs.filter(function (f) {
+    return f != null;
+  }).reduce(function (acc, f) {
+    if (typeof f !== 'function') {
+      throw new Error('Invalid Argument Type, must only provide functions, undefined, or null.');
+    }
+
+    if (acc === null) return f;
+    return function chainedFunction() {
+      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+
+      acc.apply(this, args);
+      f.apply(this, args);
+    };
+  }, null);
+}
+
+var _default = createChainedFunction;
+exports.default = _default;
+module.exports = exports["default"];
+},{}],"../node_modules/react-bootstrap/SafeAnchor.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
+
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _createChainedFunction = _interopRequireDefault(require("./utils/createChainedFunction"));
+
+var defaultProps = {
+  as: 'a'
+};
+
+function isTrivialHref(href) {
+  return !href || href.trim() === '#';
+}
+/**
+ * There are situations due to browser quirks or Bootstrap CSS where
+ * an anchor tag is needed, when semantically a button tag is the
+ * better choice. SafeAnchor ensures that when an anchor is used like a
+ * button its accessible. It also emulates input `disabled` behavior for
+ * links, which is usually desirable for Buttons, NavItems, DropdownItems, etc.
+ */
+
+
+var SafeAnchor =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inheritsLoose2.default)(SafeAnchor, _React$Component);
+
+  function SafeAnchor(props, context) {
+    var _this;
+
+    _this = _React$Component.call(this, props, context) || this;
+    _this.handleClick = _this.handleClick.bind((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)));
+    _this.handleKeyDown = _this.handleKeyDown.bind((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)));
+    return _this;
+  }
+
+  var _proto = SafeAnchor.prototype;
+
+  _proto.handleClick = function handleClick(event) {
+    var _this$props = this.props,
+        disabled = _this$props.disabled,
+        href = _this$props.href,
+        onClick = _this$props.onClick;
+
+    if (disabled || isTrivialHref(href)) {
+      event.preventDefault();
+    }
+
+    if (disabled) {
+      event.stopPropagation();
+      return;
+    }
+
+    if (onClick) {
+      onClick(event);
+    }
+  };
+
+  _proto.handleKeyDown = function handleKeyDown(event) {
+    if (event.key === ' ') {
+      event.preventDefault();
+      this.handleClick(event);
+    }
+  };
+
+  _proto.render = function render() {
+    var _this$props2 = this.props,
+        Component = _this$props2.as,
+        disabled = _this$props2.disabled,
+        onKeyDown = _this$props2.onKeyDown,
+        innerRef = _this$props2.innerRef,
+        props = (0, _objectWithoutPropertiesLoose2.default)(_this$props2, ["as", "disabled", "onKeyDown", "innerRef"]);
+
+    if (isTrivialHref(props.href)) {
+      props.role = props.role || 'button'; // we want to make sure there is a href attribute on the node
+      // otherwise, the cursor incorrectly styled (except with role='button')
+
+      props.href = props.href || '#';
+    }
+
+    if (disabled) {
+      props.tabIndex = -1;
+      props['aria-disabled'] = true;
+    }
+
+    if (innerRef) props.ref = innerRef;
+    return _react.default.createElement(Component, (0, _extends2.default)({}, props, {
+      onClick: this.handleClick,
+      onKeyDown: (0, _createChainedFunction.default)(this.handleKeyDown, onKeyDown)
+    }));
+  };
+
+  return SafeAnchor;
+}(_react.default.Component);
+
+SafeAnchor.defaultProps = defaultProps;
+var _default = SafeAnchor;
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"../node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/inheritsLoose":"../node_modules/@babel/runtime/helpers/inheritsLoose.js","@babel/runtime/helpers/assertThisInitialized":"../node_modules/@babel/runtime/helpers/assertThisInitialized.js","react":"../node_modules/react/index.js","./utils/createChainedFunction":"../node_modules/react-bootstrap/utils/createChainedFunction.js"}],"../node_modules/react-bootstrap/Button.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _ThemeProvider = require("./ThemeProvider");
+
+var _SafeAnchor = _interopRequireDefault(require("./SafeAnchor"));
+
+var Button =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inheritsLoose2.default)(Button, _React$Component);
+
+  function Button() {
+    return _React$Component.apply(this, arguments) || this;
+  }
+
+  var _proto = Button.prototype;
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        bsPrefix = _this$props.bsPrefix,
+        variant = _this$props.variant,
+        size = _this$props.size,
+        active = _this$props.active,
+        className = _this$props.className,
+        block = _this$props.block,
+        type = _this$props.type,
+        as = _this$props.as,
+        innerRef = _this$props.innerRef,
+        props = (0, _objectWithoutPropertiesLoose2.default)(_this$props, ["bsPrefix", "variant", "size", "active", "className", "block", "type", "as", "innerRef"]);
+    var classes = (0, _classnames.default)(className, bsPrefix, active && 'active', bsPrefix + "-" + variant, block && bsPrefix + "-block", size && bsPrefix + "-" + size);
+
+    if (props.href) {
+      return _react.default.createElement(_SafeAnchor.default, (0, _extends2.default)({}, props, {
+        as: as,
+        innerRef: innerRef,
+        className: (0, _classnames.default)(classes, props.disabled && 'disabled')
+      }));
+    }
+
+    var Component = as || 'button';
+    if (innerRef) props.ref = innerRef;
+    return _react.default.createElement(Component, (0, _extends2.default)({}, props, {
+      type: type,
+      className: classes
+    }));
+  };
+
+  return Button;
+}(_react.default.Component);
+
+Button.defaultProps = {
+  variant: 'primary',
+  active: false,
+  disabled: false,
+  type: 'button'
+};
+
+var _default = (0, _ThemeProvider.createBootstrapComponent)(Button, {
+  prefix: 'btn',
+  forwardRefAs: 'innerRef'
+});
+
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"../node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/inheritsLoose":"../node_modules/@babel/runtime/helpers/inheritsLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/ThemeProvider.js","./SafeAnchor":"../node_modules/react-bootstrap/SafeAnchor.js"}],"components/DragonAvatar.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32335,6 +32803,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 var _DragonAvatar = _interopRequireDefault(require("./DragonAvatar"));
 
@@ -32420,13 +32890,11 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$state$dragon = this.state.dragon,
-          generationId = _this$state$dragon.generationId,
-          dragonId = _this$state$dragon.dragonId,
-          traits = _this$state$dragon.traits;
-      return _react.default.createElement(_DragonAvatar.default, {
+      return _react.default.createElement("div", null, _react.default.createElement(_Button.default, {
+        onClick: this.fetchDragon
+      }, "New Dragon"), _react.default.createElement(_DragonAvatar.default, {
         dragon: this.state.dragon
-      });
+      }));
     }
   }, {
     key: "__reactstandin__regenerateByEval",
@@ -32463,7 +32931,7 @@ exports.default = _default2;
   var leaveModule = (typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal : require('react-hot-loader')).leaveModule;
   leaveModule && leaveModule(module);
 })();
-},{"react-hot-loader":"../node_modules/react-hot-loader/index.js","react":"../node_modules/react/index.js","./DragonAvatar":"components/DragonAvatar.js"}],"components/Generation.js":[function(require,module,exports) {
+},{"react-hot-loader":"../node_modules/react-hot-loader/index.js","react":"../node_modules/react/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/Button.js","./DragonAvatar":"components/DragonAvatar.js"}],"components/Generation.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32613,7 +33081,79 @@ exports.default = _default2;
   var leaveModule = (typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal : require('react-hot-loader')).leaveModule;
   leaveModule && leaveModule(module);
 })();
-},{"react-hot-loader":"../node_modules/react-hot-loader/index.js","react":"../node_modules/react/index.js"}],"index.js":[function(require,module,exports) {
+},{"react-hot-loader":"../node_modules/react-hot-loader/index.js","react":"../node_modules/react/index.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"index.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -32624,6 +33164,8 @@ var _Dragon = _interopRequireDefault(require("./components/Dragon"));
 
 var _Generation = _interopRequireDefault(require("./components/Generation"));
 
+require("./index.css");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 if (module.hot) {
@@ -32631,7 +33173,7 @@ if (module.hot) {
 }
 
 (0, _reactDom.render)(_react.default.createElement("div", null, _react.default.createElement("h2", null, "Dragon Stack"), _react.default.createElement(_Generation.default, null), _react.default.createElement(_Dragon.default, null)), document.getElementById('root'));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Dragon":"components/Dragon.js","./components/Generation":"components/Generation.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Dragon":"components/Dragon.js","./components/Generation":"components/Generation.js","./index.css":"index.css"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -32658,7 +33200,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63658" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52839" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

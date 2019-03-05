@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/magic8baller/fullstack_node_react_practice/issues"
   },
-  "homepage": "https://github.com/magic8baller/fullstack_node_react_practice#readme"
+  "homepage": "https://github.com/magic8baller/fullstack_node_react_practice#readme",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "react-bootstrap": "^1.0.0-beta.5"
+  }
 }
