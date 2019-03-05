@@ -32745,7 +32745,95 @@ var _default = (0, _ThemeProvider.createBootstrapComponent)(Button, {
 
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"../node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/inheritsLoose":"../node_modules/@babel/runtime/helpers/inheritsLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/ThemeProvider.js","./SafeAnchor":"../node_modules/react-bootstrap/SafeAnchor.js"}],"components/DragonAvatar.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"../node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/inheritsLoose":"../node_modules/@babel/runtime/helpers/inheritsLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/ThemeProvider.js","./SafeAnchor":"../node_modules/react-bootstrap/SafeAnchor.js"}],"assets/patchy.png":[function(require,module,exports) {
+module.exports = "/patchy.595e53f8.png";
+},{}],"assets/plain.png":[function(require,module,exports) {
+module.exports = "/plain.850cdd25.png";
+},{}],"assets/skinny.png":[function(require,module,exports) {
+module.exports = "/skinny.49e804a3.png";
+},{}],"assets/slender.png":[function(require,module,exports) {
+module.exports = "/slender.a4ff3b5b.png";
+},{}],"assets/sporty.png":[function(require,module,exports) {
+module.exports = "/sporty.feb515fe.png";
+},{}],"assets/spotted.png":[function(require,module,exports) {
+module.exports = "/spotted.14485863.png";
+},{}],"assets/stocky.png":[function(require,module,exports) {
+module.exports = "/stocky.645b467c.png";
+},{}],"assets/striped.png":[function(require,module,exports) {
+module.exports = "/striped.38c50047.png";
+},{}],"assets/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "patchy", {
+  enumerable: true,
+  get: function () {
+    return _patchy.default;
+  }
+});
+Object.defineProperty(exports, "plain", {
+  enumerable: true,
+  get: function () {
+    return _plain.default;
+  }
+});
+Object.defineProperty(exports, "skinny", {
+  enumerable: true,
+  get: function () {
+    return _skinny.default;
+  }
+});
+Object.defineProperty(exports, "slender", {
+  enumerable: true,
+  get: function () {
+    return _slender.default;
+  }
+});
+Object.defineProperty(exports, "sporty", {
+  enumerable: true,
+  get: function () {
+    return _sporty.default;
+  }
+});
+Object.defineProperty(exports, "spotted", {
+  enumerable: true,
+  get: function () {
+    return _spotted.default;
+  }
+});
+Object.defineProperty(exports, "stocky", {
+  enumerable: true,
+  get: function () {
+    return _stocky.default;
+  }
+});
+Object.defineProperty(exports, "striped", {
+  enumerable: true,
+  get: function () {
+    return _striped.default;
+  }
+});
+
+var _patchy = _interopRequireDefault(require("./patchy.png"));
+
+var _plain = _interopRequireDefault(require("./plain.png"));
+
+var _skinny = _interopRequireDefault(require("./skinny.png"));
+
+var _slender = _interopRequireDefault(require("./slender.png"));
+
+var _sporty = _interopRequireDefault(require("./sporty.png"));
+
+var _spotted = _interopRequireDefault(require("./spotted.png"));
+
+var _stocky = _interopRequireDefault(require("./stocky.png"));
+
+var _striped = _interopRequireDefault(require("./striped.png"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./patchy.png":"assets/patchy.png","./plain.png":"assets/plain.png","./skinny.png":"assets/skinny.png","./slender.png":"assets/slender.png","./sporty.png":"assets/sporty.png","./spotted.png":"assets/spotted.png","./stocky.png":"assets/stocky.png","./striped.png":"assets/striped.png"}],"components/DragonAvatar.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32753,24 +32841,134 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _assets = require("../assets");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 (function () {
   var enterModule = (typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal : require('react-hot-loader')).enterModule;
   enterModule && enterModule(module);
 })();
 
-var DragonAvatar = function DragonAvatar(props) {
-  var _props$dragon = props.dragon,
-      generationId = _props$dragon.generationId,
-      dragonId = _props$dragon.dragonId,
-      traits = _props$dragon.traits;
-  return _react.default.createElement("div", null, _react.default.createElement("span", null, "G-", generationId), _react.default.createElement("br", null), _react.default.createElement("span", null, "I-", dragonId), _react.default.createElement("br", null), traits.map(function (trait) {
-    return trait.traitValue;
-  }).join(', '));
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var propertyMap = {
+  backgroundColor: {
+    black: '#263238',
+    white: '#cfd8dc',
+    green: '#a5d6a7',
+    blue: '#0277bd'
+  },
+  build: {
+    slender: _assets.slender,
+    stocky: _assets.stocky,
+    sporty: _assets.sporty,
+    skinny: _assets.skinny
+  },
+  pattern: {
+    plain: _assets.plain,
+    striped: _assets.striped,
+    spotted: _assets.spotted,
+    patchy: _assets.patchy
+  },
+  size: {
+    small: 100,
+    medium: 140,
+    large: 180,
+    enormous: 220
+  }
 };
+
+var DragonAvatar =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(DragonAvatar, _Component);
+
+  function DragonAvatar() {
+    _classCallCheck(this, DragonAvatar);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(DragonAvatar).apply(this, arguments));
+  }
+
+  _createClass(DragonAvatar, [{
+    key: "render",
+    value: function render() {
+      var _this$props$dragon = this.props.dragon,
+          generationId = _this$props$dragon.generationId,
+          dragonId = _this$props$dragon.dragonId,
+          traits = _this$props$dragon.traits;
+      if (!dragonId) return _react.default.createElement("div", null);
+      return _react.default.createElement("div", null, _react.default.createElement("span", null, "G", generationId, "."), _react.default.createElement("span", null, "I", dragonId, ". "), traits.map(function (trait) {
+        return trait.traitValue;
+      }).join(', '), this.DragonImage);
+    }
+  }, {
+    key: "__reactstandin__regenerateByEval",
+    // @ts-ignore
+    value: function __reactstandin__regenerateByEval(key, code) {
+      // @ts-ignore
+      this[key] = eval(code);
+    }
+  }, {
+    key: "DragonImage",
+    get: function get() {
+      var dragonPropertyMap = {};
+      this.props.dragon.traits.forEach(function (trait) {
+        var traitType = trait.traitType,
+            traitValue = trait.traitValue;
+        dragonPropertyMap[traitType] = propertyMap[traitType][traitValue];
+      });
+      var backgroundColor = dragonPropertyMap.backgroundColor,
+          build = dragonPropertyMap.build,
+          pattern = dragonPropertyMap.pattern,
+          size = dragonPropertyMap.size;
+      var sizing = {
+        width: size,
+        height: size
+      };
+      return _react.default.createElement("div", {
+        className: "dragon-avatar-image-wrapper"
+      }, _react.default.createElement("div", {
+        className: "dragon-avatar-image-background",
+        style: _objectSpread({
+          backgroundColor: backgroundColor
+        }, sizing)
+      }), _react.default.createElement("img", {
+        src: pattern,
+        className: "dragon-avatar-image-pattern",
+        style: _objectSpread({}, sizing)
+      }), _react.default.createElement("img", {
+        src: build,
+        className: "dragon-avatar-image",
+        style: _objectSpread({}, sizing)
+      }));
+    }
+  }]);
+
+  return DragonAvatar;
+}(_react.Component);
 
 var _default = DragonAvatar;
 var _default2 = _default;
@@ -32784,6 +32982,7 @@ exports.default = _default2;
     return;
   }
 
+  reactHotLoader.register(propertyMap, "propertyMap", "/Users/leslie/Development/dragonstack/frontend/src/components/DragonAvatar.js");
   reactHotLoader.register(DragonAvatar, "DragonAvatar", "/Users/leslie/Development/dragonstack/frontend/src/components/DragonAvatar.js");
   reactHotLoader.register(_default, "default", "/Users/leslie/Development/dragonstack/frontend/src/components/DragonAvatar.js");
 })();
@@ -32794,7 +32993,7 @@ exports.default = _default2;
   var leaveModule = (typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal : require('react-hot-loader')).leaveModule;
   leaveModule && leaveModule(module);
 })();
-},{"react-hot-loader":"../node_modules/react-hot-loader/index.js","react":"../node_modules/react/index.js"}],"components/Dragon.js":[function(require,module,exports) {
+},{"react-hot-loader":"../node_modules/react-hot-loader/index.js","react":"../node_modules/react/index.js","../assets":"assets/index.js"}],"components/Dragon.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33200,7 +33399,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52839" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55791" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
