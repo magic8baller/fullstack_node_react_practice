@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const DEFAULT_GENERATION = { generationId: '', expiration: '' };
 const MIN_DELAY = 3000;
 class Generation extends Component {
-  state = { generation: DEFAULT_GENERATION };
-
   timer = null;
 
   componentDidMount() {
@@ -37,7 +35,8 @@ class Generation extends Component {
   };
 
   render() {
-    const { generation } = this.state;
+    console.log('props are', this.props);
+    const { generation } = this.props;
     return (
       <div>
         <h3>Generation {generation.generationId}. Expires On:</h3>
@@ -47,4 +46,8 @@ class Generation extends Component {
   }
 }
 
-export default Generation;
+const mapStateToProps = state => {
+  const generation = state.generation;
+  return { generation };
+};
+export default connect(mapStateToProps)(Generation);
