@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { generationActionCreator } from '../actions/generation';
 const MIN_DELAY = 3000;
 class Generation extends Component {
   timer = null;
@@ -48,15 +47,6 @@ class Generation extends Component {
 const mapStateToProps = state => {
   const generation = state.generation;
   return { generation };
-};
-
-const fetchGeneration = () => dispatch => {
-  return fetch('http://localhost:4001/generation')
-    .then(r => r.json())
-    .then(generationJson => {
-      dispatch(generationActionCreator(generationJson.generation));
-    })
-    .catch(err => console.error(err));
 };
 
 export default connect(
