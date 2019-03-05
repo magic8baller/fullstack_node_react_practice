@@ -53,8 +53,8 @@ const mapStateToProps = state => {
 //can access everything here as PROPS
 const mapDispatchToProps = dispatch => {
   return {
-    dispatchGeneration: generation =>
-      dispatch(generationActionCreator(generation)),
+    // dispatchGeneration: generation =>
+    //   dispatch(generationActionCreator(generation)),
     fetchGeneration: () => fetchGeneration(dispatch)
   };
 };
@@ -70,5 +70,6 @@ const fetchGeneration = dispatch => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  //this doesnt work bc still requires cb
+  { fetchGeneration }
 )(Generation);
