@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { generationActionCreator } from '../actions/generation';
 const MIN_DELAY = 3000;
 class Generation extends Component {
   timer = null;
@@ -16,8 +16,8 @@ class Generation extends Component {
     fetch('http://localhost:4001/generation')
       .then(r => r.json())
       .then(generationJson => {
-        const { generation } = generationJson;
-        this.setState({ generation });
+        // this.props.dispatch(generationActionCreator(generationJson.generation));
+        this.props.dispatchGeneration;
       })
       .catch(err => console.error(err));
   };
@@ -26,7 +26,7 @@ class Generation extends Component {
     this.fetchGeneration();
 
     let delay =
-      new Date(this.state.generation.expiration).getTime() -
+      new Date(this.props.generation.expiration).getTime() -
       new Date().getTime();
     if (delay < MIN_DELAY) {
       delay = MIN_DELAY;
@@ -50,4 +50,14 @@ const mapStateToProps = state => {
   const generation = state.generation;
   return { generation };
 };
-export default connect(mapStateToProps)(Generation);
+
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatchGeneration: generation =>
+      dispatch(generationActionCreator(generation))
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Generation);
