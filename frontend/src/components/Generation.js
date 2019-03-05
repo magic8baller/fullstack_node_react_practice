@@ -12,22 +12,21 @@ class Generation extends Component {
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
-  fetchGeneration = () => {
-    fetch('http://localhost:4001/generation')
-      .then(r => r.json())
-      .then(generationJson => {
-        // this.props.dispatch(generationActionCreator(generationJson.generation));
-        this.props.dispatchGeneration;
-      })
-      .catch(err => console.error(err));
-  };
+  // fetchGeneration = () => {
+  //   fetch('http://localhost:4001/generation')
+  //     .then(r => r.json())
+  //     .then(generationJson => {
+  //       this.props.dispatchGeneration;
+  //     })
+  //     .catch(err => console.error(err));
+  // };
 
   fetchNextGeneration = () => {
-    this.fetchGeneration();
+    const { fetchGeneration, generation } = this.props;
+    fetchGeneration();
 
     let delay =
-      new Date(this.props.generation.expiration).getTime() -
-      new Date().getTime();
+      new Date(generation.expiration).getTime() - new Date().getTime();
     if (delay < MIN_DELAY) {
       delay = MIN_DELAY;
     }
@@ -51,12 +50,24 @@ const mapStateToProps = state => {
   return { generation };
 };
 
+//can access everything here as PROPS
 const mapDispatchToProps = dispatch => {
   return {
     dispatchGeneration: generation =>
-      dispatch(generationActionCreator(generation))
+      dispatch(generationActionCreator(generation)),
+    fetchGeneration: () => fetchGeneration(dispatch)
   };
 };
+//creates fetchGeneration key to use in dispatchtoprops
+const fetchGeneration = dispatch => {
+  return fetch('http://localhost:4001/generation')
+    .then(r => r.json())
+    .then(generationJson => {
+      dispatch(generationActionCreator(generationJson.generation));
+    })
+    .catch(err => console.error(err));
+};
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
