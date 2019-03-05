@@ -32277,7 +32277,56 @@ if (!module.hot || "development" === 'production' || !hasWindow) {
     module.exports = window.reactHotLoaderGlobal = require('./dist/react-hot-loader.development.js');
   }
 }
-},{"./dist/react-hot-loader.production.min.js":"../node_modules/react-hot-loader/dist/react-hot-loader.production.min.js","./dist/react-hot-loader.development.js":"../node_modules/react-hot-loader/dist/react-hot-loader.development.js"}],"components/Dragon.js":[function(require,module,exports) {
+},{"./dist/react-hot-loader.production.min.js":"../node_modules/react-hot-loader/dist/react-hot-loader.production.min.js","./dist/react-hot-loader.development.js":"../node_modules/react-hot-loader/dist/react-hot-loader.development.js"}],"components/DragonAvatar.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = (typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal : require('react-hot-loader')).enterModule;
+  enterModule && enterModule(module);
+})();
+
+var DragonAvatar = function DragonAvatar(props) {
+  var _props$dragon = props.dragon,
+      generationId = _props$dragon.generationId,
+      dragonId = _props$dragon.dragonId,
+      traits = _props$dragon.traits;
+  return _react.default.createElement("div", null, _react.default.createElement("span", null, "G-", generationId), _react.default.createElement("br", null), _react.default.createElement("span", null, "I-", dragonId), _react.default.createElement("br", null), traits.map(function (trait) {
+    return trait.traitValue;
+  }).join(', '));
+};
+
+var _default = DragonAvatar;
+var _default2 = _default;
+exports.default = _default2;
+;
+
+(function () {
+  var reactHotLoader = (typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal : require('react-hot-loader')).default;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(DragonAvatar, "DragonAvatar", "/Users/leslie/Development/dragonstack/frontend/src/components/DragonAvatar.js");
+  reactHotLoader.register(_default, "default", "/Users/leslie/Development/dragonstack/frontend/src/components/DragonAvatar.js");
+})();
+
+;
+
+(function () {
+  var leaveModule = (typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal : require('react-hot-loader')).leaveModule;
+  leaveModule && leaveModule(module);
+})();
+},{"react-hot-loader":"../node_modules/react-hot-loader/index.js","react":"../node_modules/react/index.js"}],"components/Dragon.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32286,6 +32335,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _DragonAvatar = _interopRequireDefault(require("./DragonAvatar"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -32371,9 +32424,9 @@ function (_Component) {
           generationId = _this$state$dragon.generationId,
           dragonId = _this$state$dragon.dragonId,
           traits = _this$state$dragon.traits;
-      return _react.default.createElement("div", null, _react.default.createElement("span", null, "G-", generationId), _react.default.createElement("br", null), _react.default.createElement("span", null, "I-", dragonId), _react.default.createElement("br", null), traits.map(function (trait) {
-        return trait.traitValue;
-      }).join(', '));
+      return _react.default.createElement(_DragonAvatar.default, {
+        dragon: this.state.dragon
+      });
     }
   }, {
     key: "__reactstandin__regenerateByEval",
@@ -32410,7 +32463,7 @@ exports.default = _default2;
   var leaveModule = (typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal : require('react-hot-loader')).leaveModule;
   leaveModule && leaveModule(module);
 })();
-},{"react-hot-loader":"../node_modules/react-hot-loader/index.js","react":"../node_modules/react/index.js"}],"components/Generation.js":[function(require,module,exports) {
+},{"react-hot-loader":"../node_modules/react-hot-loader/index.js","react":"../node_modules/react/index.js","./DragonAvatar":"components/DragonAvatar.js"}],"components/Generation.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32605,7 +32658,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60436" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63658" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
