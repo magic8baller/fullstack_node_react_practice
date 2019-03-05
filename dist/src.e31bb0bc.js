@@ -32318,6 +32318,7 @@ var DEFAULT_GENERATION = {
   generationId: '',
   expiration: ''
 };
+var MIN_DELAY = 3000;
 
 var Generation =
 /*#__PURE__*/
@@ -32355,13 +32356,27 @@ function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "fetchNextGeneration", function () {
+      _this.fetchGeneration();
+
+      var delay = new Date(_this.state.generation.expiration).getTime() - new Date().getTime();
+
+      if (delay < MIN_DELAY) {
+        delay = MIN_DELAY;
+      }
+
+      setTimeout(function () {
+        return _this.fetchNextGeneration();
+      }, 10000);
+    });
+
     return _this;
   }
 
   _createClass(Generation, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.fetchGeneration();
+      this.fetchNextGeneration();
     }
   }, {
     key: "render",
@@ -32394,6 +32409,7 @@ exports.default = _default2;
   }
 
   reactHotLoader.register(DEFAULT_GENERATION, "DEFAULT_GENERATION", "/Users/leslie/Development/dragonstack/frontend/src/components/Generation.js");
+  reactHotLoader.register(MIN_DELAY, "MIN_DELAY", "/Users/leslie/Development/dragonstack/frontend/src/components/Generation.js");
   reactHotLoader.register(Generation, "Generation", "/Users/leslie/Development/dragonstack/frontend/src/components/Generation.js");
   reactHotLoader.register(_default, "default", "/Users/leslie/Development/dragonstack/frontend/src/components/Generation.js");
 })();
@@ -32447,7 +32463,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51153" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57584" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
