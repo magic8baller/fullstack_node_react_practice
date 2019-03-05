@@ -32277,7 +32277,140 @@ if (!module.hot || "development" === 'production' || !hasWindow) {
     module.exports = window.reactHotLoaderGlobal = require('./dist/react-hot-loader.development.js');
   }
 }
-},{"./dist/react-hot-loader.production.min.js":"../node_modules/react-hot-loader/dist/react-hot-loader.production.min.js","./dist/react-hot-loader.development.js":"../node_modules/react-hot-loader/dist/react-hot-loader.development.js"}],"components/Generation.js":[function(require,module,exports) {
+},{"./dist/react-hot-loader.production.min.js":"../node_modules/react-hot-loader/dist/react-hot-loader.production.min.js","./dist/react-hot-loader.development.js":"../node_modules/react-hot-loader/dist/react-hot-loader.development.js"}],"components/Dragon.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+(function () {
+  var enterModule = (typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal : require('react-hot-loader')).enterModule;
+  enterModule && enterModule(module);
+})();
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var DEFAULT_DRAGON = {
+  dragonId: '',
+  generationId: '',
+  nickname: '',
+  birthdate: '',
+  traits: []
+};
+
+var Dragon =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Dragon, _Component);
+
+  function Dragon() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, Dragon);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Dragon)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      dragon: DEFAULT_DRAGON
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "fetchDragon", function () {
+      fetch('http://localhost:4001/dragon/new').then(function (r) {
+        return r.json();
+      }).then(function (dragonJson) {
+        return _this.setState({
+          dragon: dragonJson.dragon
+        });
+      }).catch(function (err) {
+        return console.error('error', err);
+      });
+    });
+
+    return _this;
+  }
+
+  _createClass(Dragon, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.fetchDragon();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$state$dragon = this.state.dragon,
+          generationId = _this$state$dragon.generationId,
+          dragonId = _this$state$dragon.dragonId,
+          traits = _this$state$dragon.traits;
+      return _react.default.createElement("div", null, _react.default.createElement("span", null, "G-", generationId), _react.default.createElement("br", null), _react.default.createElement("span", null, "I-", dragonId), _react.default.createElement("br", null), traits.map(function (trait) {
+        return trait.traitValue;
+      }).join(', '));
+    }
+  }, {
+    key: "__reactstandin__regenerateByEval",
+    // @ts-ignore
+    value: function __reactstandin__regenerateByEval(key, code) {
+      // @ts-ignore
+      this[key] = eval(code);
+    }
+  }]);
+
+  return Dragon;
+}(_react.Component);
+
+var _default = Dragon;
+var _default2 = _default;
+exports.default = _default2;
+;
+
+(function () {
+  var reactHotLoader = (typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal : require('react-hot-loader')).default;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(DEFAULT_DRAGON, "DEFAULT_DRAGON", "/Users/leslie/Development/dragonstack/frontend/src/components/Dragon.js");
+  reactHotLoader.register(Dragon, "Dragon", "/Users/leslie/Development/dragonstack/frontend/src/components/Dragon.js");
+  reactHotLoader.register(_default, "default", "/Users/leslie/Development/dragonstack/frontend/src/components/Dragon.js");
+})();
+
+;
+
+(function () {
+  var leaveModule = (typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal : require('react-hot-loader')).leaveModule;
+  leaveModule && leaveModule(module);
+})();
+},{"react-hot-loader":"../node_modules/react-hot-loader/index.js","react":"../node_modules/react/index.js"}],"components/Generation.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32342,6 +32475,8 @@ function (_Component) {
       generation: DEFAULT_GENERATION
     });
 
+    _defineProperty(_assertThisInitialized(_this), "timer", null);
+
     _defineProperty(_assertThisInitialized(_this), "fetchGeneration", function () {
       fetch('http://localhost:4001/generation').then(function (r) {
         return r.json();
@@ -32377,6 +32512,11 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.fetchNextGeneration();
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearTimeout(this.timer);
     }
   }, {
     key: "render",
@@ -32427,6 +32567,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = require("react-dom");
 
+var _Dragon = _interopRequireDefault(require("./components/Dragon"));
+
 var _Generation = _interopRequireDefault(require("./components/Generation"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -32435,8 +32577,8 @@ if (module.hot) {
   module.hot.accept();
 }
 
-(0, _reactDom.render)(_react.default.createElement("div", null, _react.default.createElement("h2", null, "Dragon Stack"), _react.default.createElement(_Generation.default, null)), document.getElementById('root'));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Generation":"components/Generation.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _reactDom.render)(_react.default.createElement("div", null, _react.default.createElement("h2", null, "Dragon Stack"), _react.default.createElement(_Generation.default, null), _react.default.createElement(_Dragon.default, null)), document.getElementById('root'));
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Dragon":"components/Dragon.js","./components/Generation":"components/Generation.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -32463,7 +32605,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57584" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60436" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
