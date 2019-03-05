@@ -59,7 +59,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 //creates fetchGeneration key to use in dispatchtoprops
-const fetchGeneration = dispatch => {
+//aDDING cb still doesnt work! where 2nd arrow fn is responsible to pass dispatch fn to redux store..
+//bc this is an ASYNC fn, issue bc can only pass POJO to redux! (immutable state stuff..)
+// sooo NOW WE CALL IN REDUX THUNK MIDDLEWARE bc it returns functions INSTEAD OF pojos
+const fetchGeneration = () => dispatch => {
   return fetch('http://localhost:4001/generation')
     .then(r => r.json())
     .then(generationJson => {
