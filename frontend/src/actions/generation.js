@@ -1,12 +1,12 @@
 import { GENERATION } from './types';
-export const generationActionCreator = payload => {
-  return {
-    type: GENERATION_ACTION_TYPE,
-    generation: payload
-  };
-};
+// export const generationActionCreator = payload => {
+//   return {
+//     type: GENERATION_ACTION_TYPE,
+//     generation: payload
+//   };
+// };
 
-const fetchGeneration = () => dispatch => {
+export const fetchGeneration = () => dispatch => {
   dispatch({ type: GENERATION.FETCH });
   return fetch('http://localhost:4001/generation')
     .then(r => r.json())
@@ -22,7 +22,8 @@ const fetchGeneration = () => dispatch => {
           generation: jsonRes.generation
         });
       }
-      // dispatch(generationActionCreator(generationJson.generation));
     })
-    .catch(error => dispatch({type: GENERATION.FETCH_ERROR, message: error.message}) 
+    .catch(error =>
+      dispatch({ type: GENERATION.FETCH_ERROR, message: error.message })
+    );
 };

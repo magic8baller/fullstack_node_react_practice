@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { generationReducer } from './reducers/index';
+import generationReducer from './reducers/generation';
 
 export default function configureStore() {
   const composeEnhancers =

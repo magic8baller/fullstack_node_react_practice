@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchGeneration } from '../actions/generation';
+import fetchStates from '../reducers/fetchStates';
+
 const MIN_DELAY = 3000;
 class Generation extends Component {
   timer = null;
@@ -29,12 +32,21 @@ class Generation extends Component {
     if (delay < MIN_DELAY) {
       delay = MIN_DELAY;
     }
-    setTimeout(() => this.fetchNextGeneration(), 10000);
+    this.timer = setTimeout(() => this.fetchNextGeneration(), 10000);
   };
 
   render() {
     console.log('props are', this.props);
+
     const { generation } = this.props;
+    //guard clause
+    if (generation.status === fetchStates.fetching) {
+      return <div>...</div>;
+    }
+
+    if ((generation.status = fetchStates.error)) {
+      return <div>{generation.message}</div>;
+    }
     return (
       <div>
         <h3>Generation {generation.generationId}. Expires On:</h3>
