@@ -22,14 +22,28 @@ router.post('/signup', (req, res, next) => {
       }
     })
 
-    .then(() => {
-      //querys are async ops - prevent message of success if fail by returning new promise in setSession() helper fn
-      return setSession({ username, res })
+    .then(() => setSession({ username, res }))
+    .then(({ message }) => res.json({ message }))
+    .catch(error => next(error));
+});
 
+router.post('/login', (req, res, next) => {
+  const { username, password } = req.body;
+
+  AccountTable.getAccount({ usernameHash: hash(username) })
+    .then(({ account }) => {
+      if (account && account.passwordHash === hash(password)) {
+        //return promise
+        return setSession({ username, res });
+      } else {
+        const error = new Error('Incorrect username/password');
+
+        error.statusCode = 409;
+
+        throw error;
+      }
     })
-    .then(({message}) => {
-      res.json({message})
-    })
+    .then(({ message }) => res.json({ message }))
     .catch(error => next(error));
 });
 
