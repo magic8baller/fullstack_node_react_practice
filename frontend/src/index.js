@@ -1,8 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import Dragon from './components/Dragon';
-import Generation from './components/Generation';
+import Root from './components/Root';
 import configureStore from './configureStore';
 import './index.css';
 
@@ -11,9 +10,7 @@ const store = configureStore();
 const renderApp = () =>
   render(
     <Provider store={store}>
-      <h2>Dragon Stack</h2>
-      <Generation />
-      <Dragon />
+      <Root />
     </Provider>,
     document.getElementById('root')
   );
