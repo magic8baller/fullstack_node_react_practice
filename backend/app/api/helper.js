@@ -11,13 +11,16 @@ const setSession = ({ username, res }) => {
     AccountTable.updateSessionId({
       sessionId: session.id,
       usernameHash: hash(username)
-    });
-
-    res.cookie('sessionString', sessionString, {
-      expire: Date.now() + 18000000,
-      httpOnly: true
-      // secure: true //use with https!
-    });
+    })
+      .then(() => {
+        res.cookie('sessionString', sessionString, {
+          expire: Date.now() + 18000000,
+          httpOnly: true
+          // secure: true //use with https!
+        });
+        resolve({ message: 'session created' });
+      })
+      .catch(err => reject(err));
   });
 };
 

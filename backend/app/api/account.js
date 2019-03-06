@@ -24,9 +24,11 @@ router.post('/signup', (req, res, next) => {
 
     .then(() => {
       //querys are async ops - prevent message of success if fail by returning new promise in setSession() helper fn
-      setSession({ username, res });
+      return setSession({ username, res })
 
-      res.json({ message: 'SUCCE$$$$$$$$FUL account storage' });
+    })
+    .then(({message}) => {
+      res.json({message})
     })
     .catch(error => next(error));
 });
