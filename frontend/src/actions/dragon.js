@@ -1,8 +1,8 @@
+import { baseAPI } from '../config';
 import { DRAGON } from './types';
-
 export const fetchDragon = () => dispatch => {
   dispatch({ type: DRAGON.FETCH });
-  return fetch('http://localhost:4001/dragon/new')
+  return fetch(`${baseAPI}/dragon/new`)
     .then(r => r.json())
     .then(json => {
       if (json.type === 'error') {

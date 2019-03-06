@@ -1,14 +1,8 @@
+import { baseAPI } from '../config';
 import { GENERATION } from './types';
-// export const generationActionCreator = payload => {
-//   return {
-//     type: GENERATION_ACTION_TYPE,
-//     generation: payload
-//   };
-// };
-
 export const fetchGeneration = () => dispatch => {
   dispatch({ type: GENERATION.FETCH });
-  return fetch('http://localhost:4001/generation')
+  return fetch(`${baseAPI}/generation`)
     .then(r => r.json())
     .then(jsonRes => {
       if (jsonRes.type === 'error') {
