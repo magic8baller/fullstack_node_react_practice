@@ -14,11 +14,10 @@ class Session {
 
     return Session.sessionString({ username, id });
   }
-  //can use fn without needing 'new' using static
 
   static parse(sessionString) {
     const sessionData = sessionString.split(SEPARATOR);
-    //return MAP
+
     return {
       username: sessionData[0],
       id: sessionData[1],
@@ -43,11 +42,4 @@ class Session {
   }
 }
 
-const test = new Session({ username: 'testUser' });
-const userString = test.toString();
-console.log('Session.parse(userString)', Session.parse(userString));
-console.log('Session.verify(userString)', Session.verify(userString));
-
-const fakeUserString = `admin_${userString}`;
-console.log('Session.verify(fakeUserString)', Session.verify(fakeUserString));
 module.exports = Session;
