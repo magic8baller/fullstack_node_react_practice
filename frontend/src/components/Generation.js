@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchGeneration } from '../actions/generation';
 import fetchStates from '../reducers/fetchStates';
-
-const MIN_DELAY = 3000;
+const MIN_DELAY = 30000;
 class Generation extends Component {
   timer = null;
-
   componentDidMount() {
     this.fetchNextGeneration();
   }
@@ -14,42 +12,34 @@ class Generation extends Component {
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
-  // fetchGeneration = () => {
-  //   fetch('http://localhost:4001/generation')
-  //     .then(r => r.json())
-  //     .then(generationJson => {
-  //       this.props.dispatchGeneration;
-  //     })
-  //     .catch(err => console.error(err));
-  // };
 
   fetchNextGeneration = () => {
-    const { fetchGeneration, generation } = this.props;
-    fetchGeneration();
+    this.props.fetchGeneration();
 
-    let delay =
-      new Date(generation.expiration).getTime() - new Date().getTime();
-    if (delay < MIN_DELAY) {
-      delay = MIN_DELAY;
-    }
-    this.timer = setTimeout(() => this.fetchNextGeneration(), 10000);
+    let delay = MIN_DELAY;
+
+    //   new Date(this.props.generation.expiration).getTime() -
+    //   new Date().getTime();
+
+    // if (delay < MIN_DELAY) {
+    //   delay = MIN_DELAY;
+    // }
+
+    this.timer = setTimeout(() => this.fetchNextGeneration(), delay);
   };
 
   render() {
-    console.log('props are', this.props);
+    console.log('this.props', this.props);
 
     const { generation } = this.props;
-    //guard clause
-    if (generation.status === fetchStates.fetching) {
-      return <div>...</div>;
-    }
 
-    if ((generation.status = fetchStates.error)) {
+    if (generation.status === fetchStates.error) {
       return <div>{generation.message}</div>;
     }
+
     return (
       <div>
-        <h3>Generation {generation.generationId}. Expires On:</h3>
+        <h3>Generation {generation.generationId}. Expires on:</h3>
         <h4>{new Date(generation.expiration).toString()}</h4>
       </div>
     );
@@ -58,11 +48,13 @@ class Generation extends Component {
 
 const mapStateToProps = state => {
   const generation = state.generation;
+
   return { generation };
 };
 
-export default connect(
+const componentConnector = connect(
   mapStateToProps,
-
   { fetchGeneration }
-)(Generation);
+);
+
+export default componentConnector(Generation);

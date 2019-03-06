@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import generationReducer from './generation';
+import generation from './generation';
 
-export default combineReducers({ generationReducer });
+export default combineReducers({ generation });
