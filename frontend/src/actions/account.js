@@ -1,24 +1,16 @@
 import { baseAPI } from '../config';
 import { ACCOUNT } from './types';
 
-export const signup = ({ username, password }) => dispatch => {
+const fetchFromAccount = ({ endpoint, options, SUCCESS_TYPE }) => dispatch => {
   dispatch({ type: ACCOUNT.FETCH });
 
-  return fetch(`${baseAPI}/account/signup`, {
-    method: 'POST',
-    body: JSON.stringify({ username, password }),
-    headers: {
-      'Content-Type': 'application/json',
-      accept: 'application/json'
-    },
-    credentials: 'include'
-  })
+  return fetch(`${baseAPI}/account/${endpoint}`, options)
     .then(r => r.json())
     .then(json => {
       if (json.type === 'error') {
         dispatch({ type: ACCOUNT.FETCH_ERROR, message: json.message });
       } else {
-        dispatch({ type: ACCOUNT.FETCH_SUCCESS, ...json });
+        dispatch({ type: SUCCESS_TYPE, ...json });
       }
     })
     .catch(error =>
@@ -28,3 +20,40 @@ export const signup = ({ username, password }) => dispatch => {
       })
     );
 };
+export const signup = ({ username, password }) =>
+  fetchFromAccount({
+    endpoint: 'signup',
+    options: {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
+    },
+    SUCCESS_TYPE: ACCOUNT.FETCH_SUCCESS
+  });
+
+export const login = ({ username, password }) =>
+  fetchFromAccount({
+    endpoint: 'login',
+    options: {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
+    },
+    SUCCESS_TYPE: ACCOUNT.FETCH_SUCCESS
+  });
+
+export const logout = () =>
+  fetchFromAccount({
+    endpoint: 'logout',
+    options: { credentials: 'include' },
+    SUCCESS_TYPE: ACCOUNT.FETCH_LOGOUT_SUCCESS
+  });
+
+export const fetchAuthenticated = () =>
+  fetchFromAccount({
+    endpoint: 'authenticated',
+    options: { credentials: 'include' },
+    SUCCESS_TYPE: ACCOUNT.FETCH_AUTHENTICATED_SUCCESS
+  });
