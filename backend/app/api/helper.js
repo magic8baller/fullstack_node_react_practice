@@ -8,7 +8,9 @@ const setSession = ({ username, res, sessionId }) => {
 
     if (sessionId) {
       sessionString = Session.sessionString({ username, id: sessionId });
+
       setSessionCookie({ sessionString, res });
+
       resolve({ message: 'session restored' });
     } else {
       session = new Session({ username });
@@ -20,18 +22,19 @@ const setSession = ({ username, res, sessionId }) => {
       })
         .then(() => {
           setSessionCookie({ sessionString, res });
+
           resolve({ message: 'session created' });
         })
-        .catch(err => reject(err));
+        .catch(error => reject(error));
     }
   });
 };
 
 const setSessionCookie = ({ sessionString, res }) => {
   res.cookie('sessionString', sessionString, {
-    expire: Date.now() + 18000000,
-    httpOnly: true
-    // secure: true //use with https!
+    expire: Date.now() + 3600000
+    // httpOnly: true
+    // secure: true // use with https
   });
 };
 

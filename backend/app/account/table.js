@@ -6,8 +6,8 @@ class AccountTable {
       pool.query(
         'INSERT INTO account("usernameHash", "passwordHash") VALUES($1, $2)',
         [usernameHash, passwordHash],
-        (err, res) => {
-          if (err) return reject(err);
+        (error, response) => {
+          if (error) return reject(error);
 
           resolve();
         }
@@ -19,12 +19,12 @@ class AccountTable {
     return new Promise((resolve, reject) => {
       pool.query(
         `SELECT id, "passwordHash", "sessionId" FROM account
-        WHERE "usernameHash" = $1`,
+         WHERE "usernameHash" = $1`,
         [usernameHash],
-        (err, res) => {
-          if (err) return reject(err);
+        (error, response) => {
+          if (error) return reject(error);
 
-          resolve({ account: res.rows[0] });
+          resolve({ account: response.rows[0] });
         }
       );
     });
@@ -35,8 +35,8 @@ class AccountTable {
       pool.query(
         'UPDATE account SET "sessionId" = $1 WHERE "usernameHash" = $2',
         [sessionId, usernameHash],
-        (err, res) => {
-          if (err) return reject(err);
+        (error, response) => {
+          if (error) return reject(error);
 
           resolve();
         }

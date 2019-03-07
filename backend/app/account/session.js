@@ -32,12 +32,14 @@ class Session {
 
     return hash(accountData) === sessionHash;
   }
+
   static accountData({ username, id }) {
     return `${username}${SEPARATOR}${id}`;
   }
 
   static sessionString({ username, id }) {
     const accountData = Session.accountData({ username, id });
+
     return `${accountData}${SEPARATOR}${hash(accountData)}`;
   }
 }
