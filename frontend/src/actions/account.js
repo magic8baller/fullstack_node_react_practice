@@ -6,13 +6,12 @@ export const signup = ({ username, password }) => dispatch => {
 
   return fetch(`${baseAPI}/account/signup`, {
     method: 'POST',
+    body: JSON.stringify({ username, password }),
     headers: {
       'Content-Type': 'application/json',
-      accept: 'application/json',
-      //allow storing session!
-      credentials: 'include'
+      accept: 'application/json'
     },
-    body: JSON.stringify({ username, password })
+    credentials: 'include'
   })
     .then(r => r.json())
     .then(json => {

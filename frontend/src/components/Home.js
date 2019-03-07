@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Dragon from './Dragon';
 import Generation from './Generation';
-const Home = () => {
-  return (
-    <div>
-      <h2>Dragon Stack</h2>
-      <Generation />
-      <Dragon />
-    </div>
-  );
-};
+class Home extends Component {
+  render() {
+    return (
+      <div>
+        <h2>Dragon Stack</h2>
+        <Generation />
+        <Dragon />
+      </div>
+    );
+  }
+}
 
 export default Home;

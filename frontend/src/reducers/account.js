@@ -1,6 +1,5 @@
 import { ACCOUNT } from '../actions/types';
 import fetchStates from './fetchStates';
-ACCOUNT;
 
 const DEFAULT_ACCOUNT = { loggedIn: false };
 
